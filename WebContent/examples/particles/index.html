@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Particles</title>
+  <link type="text/css" rel="stylesheet" href="../../main.css" />
+</head>
+<body class="particles">
+  <h1>Particles!</h1>
+  <span id="fps">0 fps</span>
+  <canvas id="world"></canvas>
+  <form id="params">
+    <label for="particles">Particles: </label>
+    <input id="particles" type="text" value="0" />
+  </form>
+  <script src="js/lib/event.js"></script>
+  <script src="js/lib/requestanimationframe.js"></script>
+  <script>
+  (function () {
+    /** @enum {number} */
+    var versionEn = {power: 1, classic: 2};
+    var srcMap = {
+        1: "js/particles-power.js",
+        2: "js/particles-classic.js"};    
+    
+    function version() {
+        var m, v;
+        if (m = window.location.search.match(/[?&]t=([a-z^&]+)/)) {
+          v = versionEn[m[1]];
+        }
+        return v || versionEn.power;
+    }
+    
+    var s = document.createElement("script");
+    s.setAttribute("src", srcMap[version()]);
+    document.head.appendChild(s);
+  })();
+  </script>
+  <script src="js/main.js"></script>
+</body>
+</html>
